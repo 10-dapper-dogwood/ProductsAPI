@@ -1,0 +1,29 @@
+{
+  "name": "productsapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilaip96/ProductsAPI.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nilaip96/ProductsAPI/issues"
+  },
+  "homepage": "https://github.com/nilaip96/ProductsAPI#readme",
+  "dependencies": {
+    "eslint-config-airbnb": "^18.2.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.12.0",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
