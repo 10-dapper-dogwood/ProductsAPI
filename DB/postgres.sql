@@ -2,11 +2,9 @@
 -- Tables
 -- ---
 
-
-
--- DROP TABLE IF EXISTS Products;
+-- DROP TABLE IF EXISTS products;
 		
--- CREATE TABLE Products (
+-- CREATE TABLE products (
 --   id INTEGER NULL DEFAULT NULL,
 --   name VARCHAR NULL DEFAULT NULL,
 --   slogan VARCHAR NULL DEFAULT NULL,
@@ -16,9 +14,9 @@
 --   PRIMARY KEY (id)
 -- );
 
--- DROP TABLE IF EXISTS Styles;
+-- DROP TABLE IF EXISTS styles;
 		
--- CREATE TABLE Styles (
+-- CREATE TABLE styles (
 --   id INTEGER NULL DEFAULT NULL,
 --   product_id INTEGER NULL DEFAULT NULL,
 --   name VARCHAR NULL DEFAULT NULL,
@@ -29,9 +27,9 @@
 -- );
 
 
--- DROP TABLE IF EXISTS Features;
+-- DROP TABLE IF EXISTS features;
 		
--- CREATE TABLE Features (
+-- CREATE TABLE features (
 --   id INTEGER NULL DEFAULT NULL,
 --   product_id INTEGER NULL DEFAULT NULL,
 --   feature VARCHAR NULL DEFAULT NULL,
@@ -39,15 +37,13 @@
 --   PRIMARY KEY (id)
 -- );
 
-
-
 -- DROP TABLE IF EXISTS photos;
 		
 -- CREATE TABLE photos (
 --   id INTEGER NULL DEFAULT NULL,
 --   style_id INTEGER NULL DEFAULT NULL,
---   url VARCHAR NULL DEFAULT NULL,
---   thumbnail_url VARCHAR NULL DEFAULT NULL
+--   url url,
+--   thumbnail_url url
 -- );
 
 
@@ -76,12 +72,12 @@
 -- Foreign Keys 
 -- ---
 
--- ALTER TABLE Styles ADD FOREIGN KEY (product_id) REFERENCES Products (id);
--- ALTER TABLE Features ADD FOREIGN KEY (product_id) REFERENCES Products (id);
--- ALTER TABLE photos ADD FOREIGN KEY (style_id) REFERENCES Styles (id);
--- ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES Styles (id);
--- ALTER TABLE related ADD FOREIGN KEY (product_2) REFERENCES Products (id);
--- ALTER TABLE related ADD FOREIGN KEY (product_1) REFERENCES Products (id);
+-- ALTER TABLE styles ADD FOREIGN KEY (product_id) REFERENCES products (id);
+-- ALTER TABLE features ADD FOREIGN KEY (product_id) REFERENCES products (id);
+-- ALTER TABLE photos ADD FOREIGN KEY (style_id) REFERENCES styles (id);
+-- ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES styles (id);
+-- ALTER TABLE related ADD FOREIGN KEY (product_2) REFERENCES products (id);
+-- ALTER TABLE related ADD FOREIGN KEY (product_1) REFERENCES products (id);
 
 -- ---
 -- CSV IMPORT STATEMENTS
@@ -116,3 +112,31 @@
 -- DELIMITER ','
 -- CSV HEADER;
 
+
+-- ---
+-- INDEX QUERIES
+-- ---
+
+-- CREATE INDEX product_id_features ON Features (product_id);
+-- CREATE INDEX id_products ON products (id);
+-- CREATE INDEX products_1_related ON related (product_1);
+-- CREATE INDEX product_id_styles ON styles (product_id);
+-- CREATE INDEX style_id_photos ON photos (style_id);
+-- CREATE INDEX skus_id_photos ON skus (style_id);
+
+-- ---
+-- DOMAINS
+-- ---
+
+-- CREATE DOMAIN url AS text CHECK (VALUE ~ 'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,255}\.[a-z]{2,9}\y([-a-zA-Z0-9@:%_\+.,~#?!&>//=]*)$');
+
+-- ---
+-- SEARCH QUERIES
+-- ---
+
+-- SELECT * FROM skus WHERE EXISTS (SELECT id FROM styles where product_id=7 );
+-- SELECT * FROM skus INNER JOIN photos ON skus.style_id=photos.style_id WHERE skus.style_id IN (SELECT id FROM styles where product_id=100 );
+
+-- ---
+-- EXPLAIN ANALYZE (SEARCH QUERY)
+-- ---

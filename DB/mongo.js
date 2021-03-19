@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 const { Schema } = mongoose;
 
 const stylesSchema = new Schema({
@@ -14,6 +15,7 @@ const skusSchema = new Schema({
   size: String,
 });
 
+// eslint-disable-next-line no-unused-vars
 const productSchema = new Schema({
   id: Number,
   name: String,
@@ -23,5 +25,5 @@ const productSchema = new Schema({
   default_price: Number,
   related: [Number],
   skus: [skusSchema],
-  styles: [stylesSchema]
+  styles: [stylesSchema],
 });
