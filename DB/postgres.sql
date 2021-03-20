@@ -37,7 +37,7 @@
 --   PRIMARY KEY (id)
 -- );
 
--- DROP TABLE IF EXISTS photos;
+-- 
 		
 -- CREATE TABLE photos (
 --   id INTEGER NULL DEFAULT NULL,
@@ -83,7 +83,7 @@
 -- CSV IMPORT STATEMENTS
 -- ---
 
--- COPY Features
+-- COPY features
 -- FROM '/Users/nilaipatel/Documents/HackReactor/SDC/ProductsAPI/csv/features.csv'
 -- with (FORMAT csv);
 
@@ -92,7 +92,7 @@
 -- DELIMITER ','
 -- CSV HEADER;
 
--- COPY Products
+-- COPY products
 -- FROM '/Users/nilaipatel/Documents/HackReactor/SDC/ProductsAPI/csv/product.csv'
 -- DELIMITER ','
 -- CSV HEADER;
@@ -117,7 +117,7 @@
 -- INDEX QUERIES
 -- ---
 
--- CREATE INDEX product_id_features ON Features (product_id);
+-- CREATE INDEX product_id_features ON features (product_id);
 -- CREATE INDEX id_products ON products (id);
 -- CREATE INDEX products_1_related ON related (product_1);
 -- CREATE INDEX product_id_styles ON styles (product_id);
