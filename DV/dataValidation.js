@@ -2,8 +2,8 @@ const fs = require('fs');
 const readline = require('readline');
 const path = require('path');
 
-const read = fs.createReadStream(path.join(__dirname, '../csv/photos.csv'));
-const write = fs.createWriteStream(path.join(__dirname, '../csv/photos-clean.csv'));
+const read = fs.createReadStream(path.join(__dirname, '../csv/product.csv'));
+const write = fs.createWriteStream(path.join(__dirname, '../csv/numbers.csv'));
 
 const rl = readline.createInterface({
   input: read,
@@ -17,7 +17,7 @@ const validate = (line) => {
   const check2 = (string) => string;
   const check3 = (string) => string;
   if (check0(columns[0]) && check1(columns[1]) && check2(columns[2]) && check3(columns[3])) {
-    write.write(`${columns[0]},${columns[1]},${columns[2]},${columns[3]}\n`);
+    write.write(`${columns[0]}\n`);
   }
 };
 
