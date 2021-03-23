@@ -136,6 +136,9 @@
 
 -- SELECT * FROM skus WHERE EXISTS (SELECT id FROM styles where product_id=7 );
 -- SELECT * FROM skus INNER JOIN photos ON skus.style_id=photos.style_id WHERE skus.style_id IN (SELECT id FROM styles where product_id=100 );
+-- AUDREES QUERIE
+-- SELECT answers.id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful, ARRAY_AGG(photo) as photos FROM answers LEFT JOIN photos ON answers.id = photos.answer_id WHERE answers.id IN (SELECT id FROM answers WHERE question_id = %L AND reported IS false) GROUP BY answers.id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful ORDER BY date_written
+
 
 -- ---
 -- EXPLAIN ANALYZE (SEARCH QUERY)
