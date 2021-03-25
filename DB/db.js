@@ -8,4 +8,12 @@ const pool = new Pool({
   port: 5432,
 });
 
+// const pool = new Pool({
+//   user: '',
+//   host: 'localhost',
+//   database: 'product',
+//   password: '',
+//   port: 5432,
+// });
+
 module.exports.pool = pool;

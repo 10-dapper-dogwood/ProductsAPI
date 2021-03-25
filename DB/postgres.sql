@@ -73,12 +73,12 @@ CREATE TABLE related (
 -- Foreign Keys 
 -- ---
 
--- ALTER TABLE styles ADD FOREIGN KEY (product_id) REFERENCES products (id);
--- ALTER TABLE features ADD FOREIGN KEY (product_id) REFERENCES products (id);
--- ALTER TABLE photos ADD FOREIGN KEY (style_id) REFERENCES styles (id);
--- ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES styles (id);
--- ALTER TABLE related ADD FOREIGN KEY (product_2) REFERENCES products (id);
--- ALTER TABLE related ADD FOREIGN KEY (product_1) REFERENCES products (id);
+ALTER TABLE styles ADD FOREIGN KEY (product_id) REFERENCES products (id);
+ALTER TABLE features ADD FOREIGN KEY (product_id) REFERENCES products (id);
+ALTER TABLE photos ADD FOREIGN KEY (style_id) REFERENCES styles (id);
+ALTER TABLE skus ADD FOREIGN KEY (style_id) REFERENCES styles (id);
+ALTER TABLE related ADD FOREIGN KEY (product_2) REFERENCES products (id);
+ALTER TABLE related ADD FOREIGN KEY (product_1) REFERENCES products (id);
 
 -- ---
 -- CSV IMPORT STATEMENTS
@@ -117,12 +117,12 @@ CREATE TABLE related (
 -- INDEX QUERIES
 -- ---
 
--- CREATE INDEX product_id_features ON features (product_id);
--- CREATE INDEX id_products ON products (id);
--- CREATE INDEX products_1_related ON related (product_1);
--- CREATE INDEX product_id_styles ON styles (product_id);
--- CREATE INDEX style_id_photos ON photos (style_id);
--- CREATE INDEX skus_id_photos ON skus (style_id);
+CREATE INDEX product_id_features ON features (product_id);
+CREATE INDEX id_products ON products (id);
+CREATE INDEX products_1_related ON related (product_1);
+CREATE INDEX product_id_styles ON styles (product_id);
+CREATE INDEX style_id_photos ON photos (style_id);
+CREATE INDEX skus_id_photos ON skus (style_id);
 
 -- ---
 -- DOMAINS
@@ -139,13 +139,13 @@ CREATE TABLE related (
 -- AUDREES QUERIE
 -- SELECT answers.id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful, ARRAY_AGG(photo) as photos FROM answers LEFT JOIN photos ON answers.id = photos.answer_id WHERE answers.id IN (SELECT id FROM answers WHERE question_id = %L AND reported IS false) GROUP BY answers.id, question_id, body, date_written, answerer_name, answerer_email, reported, helpful ORDER BY date_written
 -- SELECT products.*, ARRAY_AGG(json_build_object('feature', features.feature, 'value',  features.value)) AS features FROM products JOIN features ON products.id = features.product_id WHERE products.id = 1234 GROUP BY products.id;
-SELECT styles.name, styles.sale_price, styles.original_price, styles.default_style, styles.id AS style_id,
-json_object_agg(skus.id, json_build_object('size', skus.size, 'quantity', skus.quantity)) AS skus,
-ARRAY_AGG(json_build_object('url', photos.url, 'thumbnail_url', photos.thumbnail_url)) AS photos
-FROM styles JOIN skus ON styles.id = skus.style_id 
-JOIN photos ON styles.id = photos.style_id
-WHERE styles.product_id = 1234347
-GROUP BY styles.id; 
+-- SELECT styles.name, styles.sale_price, styles.original_price, styles.default_style, styles.id AS style_id,
+-- json_object_agg(skus.id, json_build_object('size', skus.size, 'quantity', skus.quantity)) AS skus,
+-- ARRAY_AGG(json_build_object('url', photos.url, 'thumbnail_url', photos.thumbnail_url)) AS photos
+-- FROM styles JOIN skus ON styles.id = skus.style_id 
+-- JOIN photos ON styles.id = photos.style_id
+-- WHERE styles.product_id = 1234347
+-- GROUP BY styles.id; 
 
 
 -- ---

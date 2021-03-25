@@ -12,7 +12,7 @@
 -- DELIMITER ','
 -- CSV HEADER;
 
--- COPY Styles
+-- COPY styles
 -- FROM '/home/ubuntu/SDC/ProductsAPI/cv/styles.csv'
 -- DELIMITER ','
 -- CSV HEADER;
