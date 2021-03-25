@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-param-reassign */
 const express = require('express');
+const format = require('pg-format');
 
 const app = express();
 const port = 3001;
-const db = require('./db.js');
+const db = require('../DB/db.js');
 
 app.get('/products', (req, res) => {
   db.pool.query('SELECT * FROM products LIMIT 20', (err, data) => {
@@ -16,8 +17,20 @@ app.get('/products', (req, res) => {
   });
 });
 
+
+// app.get('/test', (req, res) => {
+//   db.pool.query("SELECT products.*, ARRAY_AGG(json_build_object('feature', features.feature, 'value',  features.value)) AS features FROM products JOIN features ON products.id = features.product_id WHERE products.id = 1234 GROUP BY products.id", (err, data) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       res.send(data.rows);
+//     }
+//   });
+// });
+
 app.get('/products/:p', (req, res) => {
-  db.pool.query(`SELECT * FROM products where id=${req.params.p}`, (err, data) => {
+  const queryString = format('SELECT * FROM products WHERE id = %L', req.params.p);
+  db.pool.query(queryString, (err, data) => {
     if (err) {
       res.send(err);
     } else {
@@ -32,6 +45,16 @@ app.get('/products/:p', (req, res) => {
     }
   });
 });
+
+// app.get('/test', (req, res) => {
+//   db.pool.query("SELECT styles.name, styles.sale_price, styles.original_price, styles.default_style, styles.id AS style_id, json_object_agg(skus.id, json_build_object('size', skus.size, 'quantity', skus.quantity)) AS skus, ARRAY_AGG(json_build_object('url', photos.url, 'thumbnail_url', photos.thumbnail_url)) AS photos FROM styles JOIN skus ON styles.id = skus.style_id JOIN photos ON styles.id = photos.style_id WHERE styles.product_id = 1234 GROUP BY styles.id", (err, data) => {
+//     if (err) {
+//       res.send(err);
+//     } else {
+//       res.send(data.rows);
+//     }
+//   });
+// });
 
 app.get('/products/:p/styles', (req, res) => {
   db.pool.query(`SELECT * FROM styles where product_id=${req.params.p}`, (err, styles) => {
