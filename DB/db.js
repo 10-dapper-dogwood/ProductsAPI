@@ -6,7 +6,7 @@ const pool = new Pool({
   database: 'product',
   password: '123',
   port: 5432,
-  max: 100,
+  max: 50,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
 });
