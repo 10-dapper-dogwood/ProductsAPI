@@ -1,0 +1,19 @@
+config:
+  target: http://ec2-13-52-219-11.us-west-1.compute.amazonaws.com
+  phases:
+    - duration: 100
+      arrivalRate: 0
+      rampTo: 1000
+  # defaults:
+  #   headers:
+  payload:
+    path: "numbers.csv"
+    fields: 
+      - "id"
+    order: sequence
+    skipHeader: true
+scenarios:
+  - name: "testing id endpoint"
+    flow:
+      - get:
+          url: "/products/{{ id }}"
