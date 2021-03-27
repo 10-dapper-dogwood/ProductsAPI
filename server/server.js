@@ -55,6 +55,18 @@ app.get('/products/:p/related', (req, res) => {
   });
 });
 
+app.get('/loaderio-748250a6cadd4b1190a5102275d3eba1',(req, res)=>{
+res.send('loaderio-748250a6cadd4b1190a5102275d3eba1')
+});
+
+
+
+
+
+
+
+
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   // console.log(`Example app listening at http://localhost:${port}`);
