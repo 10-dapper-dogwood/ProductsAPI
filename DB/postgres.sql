@@ -117,12 +117,12 @@ ALTER TABLE related ADD FOREIGN KEY (product_1) REFERENCES products (id);
 -- INDEX QUERIES
 -- ---
 
-CREATE INDEX product_id_features ON features (product_id);
-CREATE INDEX id_products ON products (id);
-CREATE INDEX products_1_related ON related (product_1);
-CREATE INDEX product_id_styles ON styles (product_id);
-CREATE INDEX style_id_photos ON photos (style_id);
-CREATE INDEX skus_id_photos ON skus (style_id);
+-- CREATE INDEX product_id_features ON features (product_id);
+-- CREATE INDEX id_products ON products (id);
+-- CREATE INDEX products_1_related ON related (product_1);
+-- CREATE INDEX product_id_styles ON styles (product_id);
+-- CREATE INDEX style_id_photos ON photos (style_id);
+-- CREATE INDEX skus_id_photos ON skus (style_id);
 
 -- ---
 -- DOMAINS
