@@ -1,6 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-param-reassign */
 const express = require('express');
 const format = require('pg-format');
 
@@ -84,6 +81,5 @@ app.get('/loaderio-748250a6cadd4b1190a5102275d3eba1', (req, res) => {
 });
 
 app.listen(port, () => {
-  // eslint-disable-next-line no-console
   // console.log(`Example app listening at http://localhost:${port}`);
 });
